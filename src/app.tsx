@@ -1,9 +1,13 @@
-import { Home } from "./pages";
+import './app.css'
+import AppRoutes from './pages'
+import { useState } from "preact/hooks"
+import { FileContext } from "./contexts"
 
 export function App() {
+  const [file, setFile] = useState<File | undefined>()
   return (
-    <>
-      <Home/>
-    </>
+    <FileContext.Provider value={{ file, setFile }}>
+      <AppRoutes/>
+    </FileContext.Provider>
   )
 }
