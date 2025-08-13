@@ -74,7 +74,6 @@ export default function SciFiDialog() {
             </div>
           </div>
         </div>
-
         {/* Outer glow effect */}
         <div className="absolute inset-0 border-2 border-red-400/20 -z-10 blur-sm"></div>
       </div>

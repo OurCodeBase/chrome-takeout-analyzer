@@ -25,13 +25,13 @@ function getTimestamp(n: number) {
   const date = time.getDay()
   const month = time.getMonth() + 1
   const year = time.getFullYear().toString().slice(2)
-  const subTime = time.toLocaleString([], {
+  const subTime = time.toLocaleTimeString('en-IN', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
     hour12: true
   })
-  const data = `${subTime} ${date}:${month}:${year}`.toUpperCase()
+  const data = `${subTime} ${date}:${month}:${year}`
   TimeCache[n] = data
   return data
 }
@@ -84,7 +84,7 @@ const RenderComponent = memo((props: RenderComponentProps) => {
     {/* Right Side */}
     <div className="hidden sm:flex items-center space-x-6 text-right">
       <div>
-        <div className="text-white font-mono text-sm">
+        <div className="text-white font-mono text-sm uppercase">
           {useTimestamp(time)}
         </div>
         <div className="text-yellow-400 text-xs">

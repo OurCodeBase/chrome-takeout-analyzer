@@ -129,7 +129,7 @@ export default function() {
                       <Zap className="w-4 h-4" />
                       <span>INITIATE ANALYSIS</span>
                     </button>
-                    <button onClick={() => setFile(null)} className="px-6 py-3 border border-red-400 text-red-400 hover:bg-red-400 hover:text-black transition-all duration-300 text-sm font-bold">
+                    <button onClick={() => setFile(undefined)} className="px-6 py-3 border border-red-400 text-red-400 hover:bg-red-400 hover:text-black transition-all duration-300 text-sm font-bold">
                       CLEAR
                     </button>
                   </div>
