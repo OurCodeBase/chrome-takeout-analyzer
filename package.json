@@ -1,5 +1,5 @@
 {
-  "name": "chrome-diagnostics",
+  "name": "chrome-takeout-analyzer",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -17,6 +17,8 @@
     "lucide-preact": "^0.539.0",
     "preact": "^10.27.0",
     "preact-iso": "^2.9.2",
+    "rc-virtual-list": "^3.19.1",
+    "recharts": "^3.1.2",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {

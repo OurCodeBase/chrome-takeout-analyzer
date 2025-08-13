@@ -1,8 +1,8 @@
 import unzip from 'jszip'
 import { useFile } from '../hooks'
-import { Header, History } from '../components'
 import { useEffect, useState } from 'preact/hooks'
 import type { DataContextType } from '../contexts/context'
+import { Graph, Header, History, Loading, StatusBar } from '../components'
 
 async function fileRead(file?: File) {
   if (!file?.name.endsWith('.zip')) throw new Error('The chrome diagnostic tools are made to handle takeout file, which is by default in *.zip format. And the file contain some structured files and folders. So the tool can only handle zip format files which is taken from google takeout.')
@@ -22,8 +22,14 @@ export default function() {
   const { file } = useFile()
   const [data, setData] = useState<DataContextType>({})
   useEffect(() => {
-    fileRead(file).then(data => setData(data))
+    (async () => {
+      const data = await fileRead(file)
+      setTimeout(() => {
+        setData(data)
+      }, 1000);
+    })()
   }, [])
+  if (!Object.keys(data).length) return <Loading/>
   return <>
     <div className="min-h-screen bg-black text-cyan-400 font-mono relative overflow-hidden">
       {/* Animated background */}
@@ -37,8 +43,12 @@ export default function() {
       {/* Actual page */}
       <div className="relative z-10 container mx-auto px-6 py-8">
         {/* Header */}<Header/>{/* Header */}
+        {/* Status Bar */}
+        <StatusBar device={data["Device Information"]?.["Device Info"][0]}/>
+        {/* History List */}
         <History data={data.History?.["Browser History"] || []} title="CHROME'S HISTORY" description="Analytics of what and how much user have visited websites."/>
-        {/* Main Content */}
+        {/* History Chart By Visit */}
+        <Graph data={data.History?.["Browser History"] || []} title="GRAPH BY VISIT" description="This graph shows you how often you visit a website."/>
         {/* Bottom Status */}
         <div className="mt-8 flex justify-center">
           <div className="flex items-center space-x-4 text-xs">
