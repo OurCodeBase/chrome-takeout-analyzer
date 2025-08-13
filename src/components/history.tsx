@@ -66,7 +66,7 @@ const RenderComponent = memo((props: RenderComponentProps) => {
   const { title, url, time, lastTime } = props
   const useTimestamp = useMemo(() => getTimestamp, [time])
   const useTimediff = useMemo(() => getTimediff, [time, lastTime])
-  return <div className="flex items-center justify-between p-4 border border-cyan-400/20 bg-cyan-400/5 hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all duration-300 group">
+  return <a href={url} target="_blank" className="flex items-center justify-between p-4 border border-cyan-400/20 bg-cyan-400/5 hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all duration-300 group">
     {/* Left Side */}
     <div className="flex items-center space-x-4">
       <div className="w-10 h-10 border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-lg group-hover:border-cyan-400/50 transition-colors">
@@ -93,7 +93,7 @@ const RenderComponent = memo((props: RenderComponentProps) => {
       </div>
       <ChevronRight className="w-5 h-5 text-cyan-400/50 group-hover:text-cyan-400 transition-colors" />
     </div>
-  </div>
+  </a>
 })
 
 export default function(props: HistoryProps) {
