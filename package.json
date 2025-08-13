@@ -1,6 +1,7 @@
 {
   "name": "chrome-takeout-analyzer",
   "private": true,
+  "homepage": "https://ourcodebase.github.io/chrome-takeout-analyzer",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
