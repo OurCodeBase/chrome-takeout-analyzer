@@ -1,8 +1,9 @@
 import unzip from 'jszip'
 import { useFile } from '../hooks'
+import { useLocation } from 'preact-iso'
 import { useEffect, useState } from 'preact/hooks'
 import type { DataContextType } from '../contexts/context'
-import { Graph, Header, History, Loading, StatusBar } from '../components'
+import { Graph, Header, History, Dialog, StatusBar } from '../components'
 
 async function fileRead(file?: File) {
   if (!file?.name.endsWith('.zip')) throw new Error('The chrome diagnostic tools are made to handle takeout file, which is by default in *.zip format. And the file contain some structured files and folders. So the tool can only handle zip format files which is taken from google takeout.')
@@ -20,16 +21,19 @@ async function fileRead(file?: File) {
 
 export default function() {
   const { file } = useFile()
+  const { route } = useLocation()
   const [data, setData] = useState<DataContextType>({})
   useEffect(() => {
-    (async () => {
-      const data = await fileRead(file)
+    fileRead(file).then(data => {
       setTimeout(() => {
         setData(data)
       }, 1000);
-    })()
+    }).catch((e: Error) => {
+      alert(e.message)
+      route('/')
+    })
   }, [])
-  if (!Object.keys(data).length) return <Loading/>
+  if (!Object.keys(data).length) return <Dialog/>
   return <>
     <div className="min-h-screen bg-black text-cyan-400 font-mono relative overflow-hidden">
       {/* Animated background */}

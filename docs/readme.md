@@ -49,7 +49,7 @@ A powerful web application for analyzing and visualizing your Google Chrome brow
 - **Prettier** - Code formatting
 
 ### Deployment
-- **GitHub Pages** - Serverless deployment platform
+- **Netlify** - Serverless deployment platform
 - **GitHub Actions** - CI/CD pipeline
 
 ### Quick Start

@@ -1,5 +1,5 @@
 export { default as Graph } from "./graph"
 export { default as Header } from "./header"
-export { default as Loading } from "./loading"
+export { default as Dialog } from "./dialog"
 export { default as History } from "./history"
 export { default as StatusBar } from "./status"
